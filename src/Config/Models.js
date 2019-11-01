@@ -23,5 +23,36 @@ export const MODELS = [
 
     ],
     url: "users"
+  },
+  {
+    name: "Events",
+    feilds: [
+      {
+        type: "text",
+        name: "title",
+        placeholder: "Title",
+        requared: true,
+        show:true,
+        validate:false
+      },
+      {
+        type: "textarea",
+        name: "description",
+        placeholder: "Description",
+        requared: false,
+        show:false,
+        validate:false
+      },
+      {
+        type: "date",
+        name: "startdate",
+        placeholder: "",
+        requared: true,
+        show:true,
+        validate:false
+      },
+
+    ],
+    url: "events"
   }
 ];

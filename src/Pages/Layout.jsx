@@ -81,7 +81,7 @@ export default function Layout({ children }) {
       <List>
         {MODELS.map(model => {
           return (
-            <Link to={model.url}>
+            <Link key={model.name} to={model.url}>
               <ListItem button key={model.name}>
                 <ListItemIcon>
                   {model.icon !== undefined ? model.icon : <AccountCircle />}
