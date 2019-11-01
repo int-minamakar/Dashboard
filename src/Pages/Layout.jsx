@@ -6,8 +6,6 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -16,10 +14,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { APP_NAME } from "../conestant";
+import { APP_NAME } from "../Conestants/conestant";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import { MODELS } from "../Config/Models";
 const OuterDiv = styled.div`
   margin-top: 5%;
   width: 80%;
@@ -81,27 +79,20 @@ export default function Layout({ children }) {
       onKeyDown={event => toggleDrawer(event, false)}
     >
       <List>
-        <Link to="/users">
-          {" "}
-          <ListItem button key="Users">
-            <ListItemIcon>
-              <AccountCircle />
-            </ListItemIcon>
-            <ListItemText primary="Users" />
-          </ListItem>
-        </Link>
+        {MODELS.map(model => {
+          return (
+            <Link to={model.url}>
+              <ListItem button key={model.name}>
+                <ListItemIcon>
+                  {model.icon !== undefined ? model.icon : <AccountCircle />}
+                </ListItemIcon>
+                <ListItemText primary={model.name} />
+              </ListItem>
+            </Link>
+          );
+        })}
       </List>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </div>
   );
   return (
